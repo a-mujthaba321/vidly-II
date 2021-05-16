@@ -181,9 +181,30 @@
     <Compile Include="Migrations\202105151524427_InitialModel.Designer.cs">
       <DependentUpon>202105151524427_InitialModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105151604056_add-membership-type.cs" />
+    <Compile Include="Migrations\202105151604056_add-membership-type.Designer.cs">
+      <DependentUpon>202105151604056_add-membership-type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105151608523_AddMembershipTypes.cs" />
+    <Compile Include="Migrations\202105151608523_AddMembershipTypes.Designer.cs">
+      <DependentUpon>202105151608523_AddMembershipTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105161522050_ApplyValidationsToCustomer.cs" />
+    <Compile Include="Migrations\202105161522050_ApplyValidationsToCustomer.Designer.cs">
+      <DependentUpon>202105161522050_ApplyValidationsToCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105161624356_AddNameToMembershipType.cs" />
+    <Compile Include="Migrations\202105161624356_AddNameToMembershipType.Designer.cs">
+      <DependentUpon>202105161624356_AddNameToMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105161625470_SetNameToMembershipType.cs" />
+    <Compile Include="Migrations\202105161625470_SetNameToMembershipType.Designer.cs">
+      <DependentUpon>202105161625470_SetNameToMembershipType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -354,6 +375,7 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Customers\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -372,6 +394,21 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202105151524427_InitialModel.resx">
       <DependentUpon>202105151524427_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105151604056_add-membership-type.resx">
+      <DependentUpon>202105151604056_add-membership-type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105151608523_AddMembershipTypes.resx">
+      <DependentUpon>202105151608523_AddMembershipTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105161522050_ApplyValidationsToCustomer.resx">
+      <DependentUpon>202105161522050_ApplyValidationsToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105161624356_AddNameToMembershipType.resx">
+      <DependentUpon>202105161624356_AddNameToMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105161625470_SetNameToMembershipType.resx">
+      <DependentUpon>202105161625470_SetNameToMembershipType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
