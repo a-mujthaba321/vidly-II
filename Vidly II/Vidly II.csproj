@@ -201,6 +201,10 @@
     <Compile Include="Migrations\202105161625470_SetNameToMembershipType.Designer.cs">
       <DependentUpon>202105161625470_SetNameToMembershipType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105171526305_AddDOBToCustomer.cs" />
+    <Compile Include="Migrations\202105171526305_AddDOBToCustomer.Designer.cs">
+      <DependentUpon>202105171526305_AddDOBToCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -409,6 +413,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105161625470_SetNameToMembershipType.resx">
       <DependentUpon>202105161625470_SetNameToMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105171526305_AddDOBToCustomer.resx">
+      <DependentUpon>202105171526305_AddDOBToCustomer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
