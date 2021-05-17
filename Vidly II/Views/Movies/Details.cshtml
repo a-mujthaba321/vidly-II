@@ -1,0 +1,29 @@
+﻿
+@model Vidly_II.Models.Movie
+@{
+    ViewBag.Title = "Movie Details";
+}
+<div class="row">
+    <div class="col">
+        <h2>@Model.Title</h2>
+    </div>
+    
+</div>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <img class="img-fluid" alt="Responsive image" src="@Model.Image" />
+        </div>
+
+        <div class="col-sm-6">
+            <ul>
+                <li>Genre: @Model.Genre.Name</li>
+                <li>Release Date: @Model.ReleaseDate.ToLongDateString()</li>
+                <li>Date Added: @Model.Genre.Name</li>
+                <li>Number in Stock: @Model.NumberInStock</li>
+            </ul>
+        </div>
+
+    </div>
+</
+
