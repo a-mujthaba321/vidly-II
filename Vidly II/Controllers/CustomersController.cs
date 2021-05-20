@@ -48,7 +48,23 @@ namespace Vidly_II.Controllers
         [HttpPost]
         public ActionResult Save(Customer customer)
         {
-            _dbContext.Customers.Add(customer);
+
+            if(customer.Id == 0)
+            {
+                _dbContext.Customers.Add(customer);
+            }
+            else
+            {
+                var customerInDb = _dbContext.Customers.Single(c => c.Id == customer.Id);
+
+                customerInDb.Name = customer.Name;
+                customerInDb.BirthDate = customer.BirthDate;
+                customerInDb.isSubscribedToCustomer = customer.isSubscribedToCustomer;
+                customerInDb.MembershipTypeId = customer.MembershipTypeId;
+
+            }
+
+           
             _dbContext.SaveChanges();
             return RedirectToAction("Index","Customers");
         }
@@ -71,6 +87,13 @@ namespace Vidly_II.Controllers
             return View("Create", viewModel);
         }
 
+        public ActionResult Details(int id)
+        {
+            var customer = _dbContext.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
+
+            return View(customer);
+        }
+
         //public ActionResult Index()
         //{
         //    var movie = new Movie() { Title = "Shrek!" };
@@ -90,11 +113,6 @@ namespace Vidly_II.Controllers
         //    return View(viewModel);
         //}
 
-        public ActionResult Details(int id)
-        {
-            var customer = _dbContext.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
-           
-            return View(customer);
-        }
+
     }
 }

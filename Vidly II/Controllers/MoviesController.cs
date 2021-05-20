@@ -43,6 +43,17 @@ namespace Vidly_II.Controllers
             return View(movie);
         }
 
+        public ActionResult Create()
+        {
+            var genres = _dbContext.Genres.ToList();
+
+            var viewModel = new AddEditMovieViewModel
+            {
+                Genres = genres
+            };
+            return View(viewModel);
+        }
+
         //public ActionResult Index(int? page, string sort)
         //{
 
