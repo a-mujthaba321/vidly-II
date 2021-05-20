@@ -34,6 +34,43 @@ namespace Vidly_II.Controllers
             return View(customers);
         }
 
+        public ActionResult Create()
+        {
+            var membershipTypes = _dbContext.MembershipTypes.ToList();
+
+            var viewModel = new CreateCustomerViewModel
+            {
+                MembershipTypes = membershipTypes
+
+            };
+            return View(viewModel);
+        }
+        [HttpPost]
+        public ActionResult Save(Customer customer)
+        {
+            _dbContext.Customers.Add(customer);
+            _dbContext.SaveChanges();
+            return RedirectToAction("Index","Customers");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var customer = _dbContext.Customers.SingleOrDefault(c => c.Id == id);
+
+            if(customer == null)
+            {
+                return HttpNotFound();
+            }
+
+            var viewModel = new CreateCustomerViewModel
+            {
+                MembershipTypes = _dbContext.MembershipTypes.ToList(),
+                Customer = customer
+            };
+
+            return View("Create", viewModel);
+        }
+
         //public ActionResult Index()
         //{
         //    var movie = new Movie() { Title = "Shrek!" };
