@@ -54,6 +54,18 @@ namespace Vidly_II.Controllers
             return View(viewModel);
         }
 
+        public ActionResult Save(Movie movie)
+        {
+
+            DateTime dateTimeNow = DateTime.Now;
+
+            movie.DateAdded = dateTimeNow;
+
+            _dbContext.Movies.Add(movie);
+            _dbContext.SaveChanges();
+            return RedirectToAction("Index", "Movies");
+        }
+
         //public ActionResult Index(int? page, string sort)
         //{
 

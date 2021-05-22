@@ -36,6 +36,10 @@
         @Html.TextBoxFor(m => m.Movie.NumberInStock, new { @class = "form-control", @type = "number" })
     </div>
 
+    @Html.HiddenFor(m => m.Movie.Id)
+
+    <button class="btn btn-primary" type="submit">Submit</button>
+
 
 }
 
