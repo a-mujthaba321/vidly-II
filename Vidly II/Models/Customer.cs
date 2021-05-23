@@ -16,6 +16,7 @@ namespace Vidly_II.Models
 
 
         [Display(Name ="Date of Birth")]
+        [Min18YearsIfMember]
         public DateTime? BirthDate { get; set; }
 
         public bool isSubscribedToCustomer { get; set; }
