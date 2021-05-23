@@ -5,7 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+@if (Model.Movie.Id == 0)
+{
+    <h2>Add Movie</h2>
+}
+else
+{
+    <h2>Editing @Model.Movie.Title</h2>
+}
+
 
 @using (Html.BeginForm("Save", "Movies"))
 {

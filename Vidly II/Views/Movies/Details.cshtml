@@ -3,12 +3,17 @@
 @{
     ViewBag.Title = "Movie Details";
 }
-<div class="row">
-    <div class="col">
-        <h2>@Model.Title</h2>
+
+    <div class="row">
+        <div class="col-8">
+            <h2>@Model.Title</h2>
+        </div>
+
+        <div class="col-4">
+            @Html.ActionLink("Edit", "Edit", "Movies", new { id = @Model.Id }, new { @class = "btn btn-primary" })
+        </div>
     </div>
-    
-</div>
+
 
     <div class="row">
         <div class="col-sm-4">
@@ -19,7 +24,7 @@
             <ul>
                 <li>Genre: @Model.Genre.Name</li>
                 <li>Release Date: @Model.ReleaseDate.ToLongDateString()</li>
-                <li>Date Added: @Model.Genre.Name</li>
+                <li>Date Added: @Model.DateAdded</li>
                 <li>Number in Stock: @Model.NumberInStock</li>
             </ul>
         </div>

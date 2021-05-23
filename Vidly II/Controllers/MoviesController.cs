@@ -20,11 +20,6 @@ namespace Vidly_II.Controllers
             _dbContext = new ApplicationDbContext();
         }
 
-        public ActionResult Edit(int movieId)
-        {
-            return Content("ID = " + movieId);
-        }
-
         public ActionResult Index(int? page, string sort)
         {
 
@@ -57,13 +52,53 @@ namespace Vidly_II.Controllers
         public ActionResult Save(Movie movie)
         {
 
-            DateTime dateTimeNow = DateTime.Now;
+            if(movie.Id == 0)
+            {
+                DateTime dateTimeNow = DateTime.Now;
 
-            movie.DateAdded = dateTimeNow;
+                movie.DateAdded = dateTimeNow;
 
-            _dbContext.Movies.Add(movie);
-            _dbContext.SaveChanges();
-            return RedirectToAction("Index", "Movies");
+                _dbContext.Movies.Add(movie);
+
+                _dbContext.SaveChanges();
+                return RedirectToAction("Index", "Movies");
+
+            }
+            else
+            {
+                var movieInDb = _dbContext.Movies.Single(m => m.Id == movie.Id);
+
+                movieInDb.Title = movie.Title;
+                movieInDb.Image = movie.Image;
+                movieInDb.ReleaseDate = movie.ReleaseDate;
+                movieInDb.GenreId = movie.GenreId;
+                movieInDb.NumberInStock = movie.NumberInStock;
+
+                _dbContext.SaveChanges();
+                return RedirectToAction("Details", "Movies", new { id=movie.Id});
+
+            }
+
+            
+            
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var movie = _dbContext.Movies.SingleOrDefault(m => m.Id == id);
+
+            if(movie == null)
+            {
+                return HttpNotFound();
+            }
+
+            var viewModel = new AddEditMovieViewModel
+            {
+                Movie = movie,
+                Genres = _dbContext.Genres.ToList()
+            };
+
+            return View("Create", viewModel);
         }
 
         //public ActionResult Index(int? page, string sort)

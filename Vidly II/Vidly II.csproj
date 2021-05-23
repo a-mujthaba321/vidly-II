@@ -213,6 +213,10 @@
     <Compile Include="Migrations\202105171600203_SeedGenres.Designer.cs">
       <DependentUpon>202105171600203_SeedGenres.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105230436113_AddRequiredConstraintsToDb.cs" />
+    <Compile Include="Migrations\202105230436113_AddRequiredConstraintsToDb.Designer.cs">
+      <DependentUpon>202105230436113_AddRequiredConstraintsToDb.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -436,6 +440,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105171600203_SeedGenres.resx">
       <DependentUpon>202105171600203_SeedGenres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105230436113_AddRequiredConstraintsToDb.resx">
+      <DependentUpon>202105230436113_AddRequiredConstraintsToDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
