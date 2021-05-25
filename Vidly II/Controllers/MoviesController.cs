@@ -23,7 +23,7 @@ namespace Vidly_II.Controllers
         public ActionResult Index(int? page, string sort)
         {
 
-            var movies = _dbContext.Movies.Include(m=>m.Genre).ToList();
+            var movies = _dbContext.Movies.Include(m=>m.Genre).OrderByDescending(m=>m.DateAdded).ToList();
 
             var viewModel = new MoviesViewModel() { Movies = movies };
 
@@ -49,8 +49,22 @@ namespace Vidly_II.Controllers
             return View(viewModel);
         }
 
+        [ValidateAntiForgeryToken]
+        [HttpPost]
         public ActionResult Save(Movie movie)
         {
+
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new AddEditMovieViewModel(movie)
+                {
+                    Genres = _dbContext.Genres.ToList()
+                };
+
+                return View("Create", viewModel);
+
+            }
+
 
             if(movie.Id == 0)
             {
@@ -78,8 +92,6 @@ namespace Vidly_II.Controllers
                 return RedirectToAction("Details", "Movies", new { id=movie.Id});
 
             }
-
-            
             
         }
 
@@ -92,9 +104,8 @@ namespace Vidly_II.Controllers
                 return HttpNotFound();
             }
 
-            var viewModel = new AddEditMovieViewModel
+            var viewModel = new AddEditMovieViewModel(movie)
             {
-                Movie = movie,
                 Genres = _dbContext.Genres.ToList()
             };
 
