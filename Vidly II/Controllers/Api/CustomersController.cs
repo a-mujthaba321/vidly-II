@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using Vidly_II.Dtos;
 using Vidly_II.Models;
@@ -51,12 +50,12 @@ namespace Vidly_II.Controllers.Api
 
             customerDto.Id = customer.Id;
 
-            return Created(new Uri(Request.RequestUri +"/"+ customer.Id), customer) ;
+            return Created(new Uri(Request.RequestUri +"/"+ customer.Id), customerDto) ;
 
         }
 
         [HttpPut]
-        public CustomerDto UpdateCustomer(int Id, CustomerDto customerDto)
+        public IHttpActionResult UpdateCustomer(int Id, CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
             {
@@ -75,13 +74,13 @@ namespace Vidly_II.Controllers.Api
 
             _dbContext.SaveChanges();
 
-            return customerDto;
+            return Ok(customerDto);
 
         }
 
 
         [HttpDelete]
-        public void DeleteCustomer(int Id)
+        public IHttpActionResult DeleteCustomer(int Id)
         {
             var customerInDb = _dbContext.Customers.SingleOrDefault(c => c.Id == Id);
 
@@ -92,6 +91,8 @@ namespace Vidly_II.Controllers.Api
 
             _dbContext.Customers.Remove(customerInDb);
             _dbContext.SaveChanges();
+
+            return Ok();
         }
 
 
