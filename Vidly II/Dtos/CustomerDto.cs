@@ -22,5 +22,7 @@ namespace Vidly_II.Dtos
         public bool isSubscribedToCustomer { get; set; }
 
         public byte MembershipTypeId { get; set; }
+
+        public MembershipType MembershipType { get; set; }
     }
 }
