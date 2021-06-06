@@ -23,7 +23,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
-            <th scope="col">Discount Rate</th>
+            <th scope="col">Membership Type</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -36,7 +36,7 @@
     <script>
         $(document).ready(function () {
 
-            $("#customers").DataTable({
+            var table = $("#customers").DataTable({
 
                 ajax: {
                     url: "/api/customers",
@@ -52,6 +52,8 @@
                         }
                     },
 
+
+
                     {
                         data: "name",
                         render: function (data, type, customer) {
@@ -61,11 +63,7 @@
                     },
 
                     {
-                        data: "name",
-                        render: function (data, type, customer) {
-
-                            return "<a href='/api/customers/" + customer.id + "'>" + customer.name + "</a>"
-                        }
+                        data: "membershipType.name"
                     },
 
                     {
@@ -73,7 +71,7 @@
                         data: "id",
                         render: function (data, type, customer) {
 
-                            return "<button class='btn btn-danger' data-customer-id='" + data + "'/>Delete</button>";
+                            return "<button class='btn btn-danger js-delete' data-customer-id='" + data + "'/>Delete</button>";
                         }
                     }
 
@@ -95,7 +93,9 @@
                             method: "DELETE",
                             success: function () {
 
-                                button.parents("tr").remove();
+                                table.row(button.parents("tr")).remove().draw();
+
+                                
 
                             }
                         });

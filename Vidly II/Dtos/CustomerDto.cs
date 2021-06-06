@@ -23,6 +23,6 @@ namespace Vidly_II.Dtos
 
         public byte MembershipTypeId { get; set; }
 
-        public MembershipType MembershipType { get; set; }
+        public MembershipTypeDTO MembershipType { get; set; }
     }
 }
