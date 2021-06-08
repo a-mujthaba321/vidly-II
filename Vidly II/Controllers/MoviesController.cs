@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Vidly_II.Models;
 using Vidly_II.ViewModels;
 using System.Data.Entity;
+using System.Web.Security;
 
 namespace Vidly_II.Controllers
 {
@@ -27,7 +28,15 @@ namespace Vidly_II.Controllers
 
             var viewModel = new MoviesViewModel() { Movies = movies };
 
-            return View(viewModel);
+           
+            if (User.IsInRole(RoleName.EditMovies))
+            {
+                return View("List", viewModel);
+            }
+
+            return View("ReadOnly", viewModel);
+
+            
         }
 
 
@@ -38,6 +47,7 @@ namespace Vidly_II.Controllers
             return View(movie);
         }
 
+        [Authorize(Roles = RoleName.EditMovies)]
         public ActionResult Create()
         {
             var genres = _dbContext.Genres.ToList();
@@ -49,6 +59,7 @@ namespace Vidly_II.Controllers
             return View(viewModel);
         }
 
+        [Authorize(Roles = RoleName.EditMovies)]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Save(Movie movie)
